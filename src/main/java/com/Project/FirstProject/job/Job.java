@@ -1,9 +1,8 @@
 package com.Project.FirstProject.job;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.Project.FirstProject.company.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 @Entity
 public class Job {
@@ -15,6 +14,18 @@ public class Job {
     private String minSalary;
     private String maxSalary;
     private String location;
+
+    @JsonIgnore
+    @ManyToOne
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public Long getId() {
         return id;
@@ -67,13 +78,13 @@ public class Job {
         this.location = location;
     }
 
-    public Job(Long id, String title, String description, String minSalary, String maxSalary, String location) {
+    public Job(Long id, String title, String description, String minSalary, String maxSalary, String location, Company company) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
+        this.company = company;
     }
-
 }

@@ -39,6 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
             Company comp = companyOptional.get();
             comp.setName(company.getName());
             comp.setDescription(company.getDescription());
+            comp.setJobs(company.getJobs());
             companyRepository.save(comp);
             return true;
         }
@@ -47,10 +48,11 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public boolean deleteCompany(Long id) {
-        try {
+        if (companyRepository.existsById(id)){
             companyRepository.deleteById(id);
             return true;
-        } catch (Exception e) {
+        }
+        else{
             return false;
         }
     }
