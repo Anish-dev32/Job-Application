@@ -15,7 +15,6 @@ public class Job {
     private String maxSalary;
     private String location;
 
-    @JsonIgnore
     @ManyToOne
     private Company company;
 

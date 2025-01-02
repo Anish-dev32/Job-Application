@@ -14,7 +14,7 @@ public class Company {
     private String name;
     private String description;
 
-
+    @JsonIgnore
     @OneToMany(mappedBy = "company")
     private List<Job> Jobs;
 
@@ -74,6 +74,6 @@ public class Company {
         this.id = id;
         this.name = name;
         this.description = description;
-        Jobs = jobs;
+        this.Jobs = jobs;
     }
 }
